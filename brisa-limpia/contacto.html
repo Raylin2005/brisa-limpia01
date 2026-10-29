@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto y reservas · Brisa Limpia</title>
+<meta name="description" content="Solicita tu cotización de limpieza a domicilio: formulario, teléfono, correo y dirección de Brisa Limpia.">
+<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<div class="barra">
+<a class="marca" href="index.html"><img src="img/logo.svg" alt="Logotipo de Brisa Limpia: una gota blanca con una hoja verde sobre círculo azul" width="36" height="36">Brisa Limpia</a>
+<nav aria-label="Principal">
+<ul>
+<li><a href="index.html">Inicio</a></li>
+<li><a href="servicios.html">Servicios</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+</ul>
+</nav>
+</div>
+<div class="portada simple">
+<div>
+<h1>Contacto y reservas</h1>
+<p>Cuéntanos qué necesitas y te respondemos en menos de 2 horas.</p>
+<p><a class="boton" href="#formulario">Ir al formulario</a></p>
+</div>
+
+</div>
+</header>
+<main>
+<section id="datos">
+<h2>Escríbenos o llámanos</h2>
+<address>
+<strong>Brisa Limpia</strong><br>
+Av. Abraham Lincoln 1015, Santo Domingo<br>
+<a href="mailto:hola@brisalimpia.example">hola@brisalimpia.example</a><br>
+<a href="tel:+18095550142">+1 809 555 0142</a>
+</address>
+<p>Horario: <time datetime="08:00">8:00 a. m.</time> a <time datetime="18:00">6:00 p. m.</time>, de lunes a sábado.</p>
+<ul>
+<li><a href="#formulario">Ir al formulario</a></li>
+<li><a href="docs/catalogo-brisa-limpia.txt" download>Descargar el catálogo</a></li>
+<li><a href="https://es.wikipedia.org/wiki/Higiene" target="_blank" rel="noopener">Más sobre higiene en el hogar</a></li>
+</ul>
+</section>
+<section id="formulario">
+<h2>Solicita tu cotización</h2>
+<form method="post">
+<fieldset>
+<legend>Tus datos</legend>
+<label for="nombre">Nombre completo</label>
+<input type="text" id="nombre" name="nombre" required minlength="3" maxlength="60" autocomplete="name">
+<label for="correo">Correo electrónico</label>
+<input type="email" id="correo" name="correo" required autocomplete="email">
+<label for="telefono">Teléfono (10 dígitos)</label>
+<input type="tel" id="telefono" name="telefono" required pattern="[0-9]{10}" maxlength="10" autocomplete="tel">
+<label for="clave">Contraseña para consultar tu historial</label>
+<input type="password" id="clave" name="clave" required minlength="8" autocomplete="new-password">
+</fieldset>
+<fieldset>
+<legend>Tu servicio</legend>
+<label for="servicio">Tipo de servicio</label>
+<select id="servicio" name="servicio" required>
+<option value="">Elige una opción</option>
+<optgroup label="Hogar">
+<option value="basica">Limpieza básica</option>
+<option value="profunda">Limpieza profunda</option>
+<option value="mudanza">Limpieza de mudanza</option>
+</optgroup>
+<optgroup label="Especial">
+<option value="oficina">Oficina pequeña</option>
+<option value="postobra">Post-obra</option>
+<option value="alfombras">Alfombras y tapetes</option>
+</optgroup>
+</select>
+<label for="fecha">Fecha deseada</label>
+<input type="date" id="fecha" name="fecha" min="2026-11-01" required>
+<label for="hora">Hora de llegada</label>
+<input type="time" id="hora" name="hora" min="07:00" max="16:00">
+<label for="metros">Metros cuadrados aproximados</label>
+<input type="number" id="metros" name="metros" min="20" max="500" step="5" required>
+<label for="suciedad">Nivel de suciedad (1 a 5)</label>
+<input type="range" id="suciedad" name="suciedad" min="1" max="5" value="3">
+<label for="color">Color de tus paredes</label>
+<input type="color" id="color" name="color" value="#ffffff">
+<label for="foto">Foto del espacio (opcional)</label>
+<input type="file" id="foto" name="foto" accept="image/*">
+<p><strong id="frecuencia">Frecuencia</strong></p>
+<div role="radiogroup" aria-labelledby="frecuencia">
+<label class="en-linea" for="f-una"><input type="radio" id="f-una" name="frecuencia" value="una" required> Una vez</label>
+<label class="en-linea" for="f-semanal"><input type="radio" id="f-semanal" name="frecuencia" value="semanal"> Semanal</label>
+<label class="en-linea" for="f-mensual"><input type="radio" id="f-mensual" name="frecuencia" value="mensual"> Mensual</label>
+</div>
+<label for="comentarios">Comentarios</label>
+<textarea id="comentarios" name="comentarios" rows="4" maxlength="300"></textarea>
+<label class="en-linea" for="acepto"><input type="checkbox" id="acepto" name="acepto" required> Acepto el uso de mis datos para recibir la cotización</label>
+</fieldset>
+<button type="submit">Enviar solicitud</button>
+</form>
+</section>
+</main>
+<footer>
+<p>&copy; 2026 Brisa Limpia · Limpieza profesional a domicilio</p>
+<p><small>Sitio creado por [Nombre completo del estudiante] · Matrícula [000000]</small></p>
+</footer>
+</body>
+</html>
