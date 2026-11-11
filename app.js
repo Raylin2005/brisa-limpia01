@@ -57,44 +57,7 @@ function leer(clave) {
   try { return localStorage.getItem(clave); } catch (e) { return null; }
 }
 
-/* 3. Estilos de los elementos creados con JavaScript --------- */
-// El archivo style.css no se toca: lo nuevo trae sus propios estilos.
-function inyectarEstilos() {
-  const css = `
-:root{--error:#a8402f}
-body.oscuro{--azul:#7fb5dc;--azul-osc:#cfe3f1;--verde:#6fc29b;--verde-cl:#1d2f2a;--blanco:#10181e;--texto:#e4edf2;--borde:#2d4350;--error:#e58b7b}
-body.oscuro input,body.oscuro select,body.oscuro textarea{background:var(--blanco);color:var(--texto)}
-.acciones{display:flex;gap:.5rem;align-items:center}
-.menu-boton,.tema-boton,.filtro-boton{padding:.45rem .9rem;background:var(--azul);transition:background .2s}
-.menu-boton{display:none}
-nav a[aria-current=page]{color:var(--verde);border-bottom:2px solid var(--verde)}
-.volver-arriba{position:fixed;right:1rem;bottom:1rem;opacity:0;pointer-events:none;transition:opacity .25s}
-.volver-arriba.visible{opacity:1;pointer-events:auto}
-.filtros{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1rem}
-.filtros input{max-width:280px}
-.filtro-boton[aria-pressed=true]{background:var(--verde)}
-.contador{color:var(--azul-osc);font-weight:700}
-.tarjetas li{transition:transform .2s,box-shadow .2s}
-.tarjetas li:hover{transform:translateY(-3px);box-shadow:0 6px 14px rgba(22,64,95,.15)}
-.tarjetas li img{width:100%;border-radius:8px}
-.tarjetas .categoria{color:var(--verde);font-size:.85rem;font-weight:700;margin:.4rem 0 0}
-.tarjetas .precio{font-weight:700;color:var(--azul-osc)}
-.sin-resultados{padding:1rem;border:1px dashed var(--borde);border-radius:8px}
-.error{display:block;color:var(--error);font-size:.85rem;margin-top:.25rem}
-form input.invalido,form select.invalido,form textarea.invalido{border-color:var(--error)}
-.exito{border:1px solid var(--verde);background:var(--verde-cl);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem}
-@media(max-width:700px){
-.menu-boton{display:inline-block}
-.barra nav{width:100%;order:3}
-.barra nav ul{display:none;flex-direction:column;gap:.5rem;padding:.5rem 0}
-.barra nav ul.abierto{display:flex}
-}`;
-  const estilo = crear("style", { id: "estilos-js" });
-  estilo.textContent = css;
-  document.head.appendChild(estilo);
-}
-
-/* 4. Las tres páginas: menú, tema, año, volver arriba ------- */
+/* 3. Las tres páginas: menú, tema, año, volver arriba ------- */
 function marcarPaginaActual() {
   const archivo = location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll("nav a").forEach((enlace) => {
@@ -165,7 +128,7 @@ function crearVolverArriba() {
   document.body.appendChild(boton);
 }
 
-/* 5. servicios.html: catálogo dinámico ---------------------- */
+/* 4. servicios.html: catálogo dinámico ---------------------- */
 function crearTarjeta(servicio) {
   const tarjeta = crear("li");
   tarjeta.append(
@@ -225,7 +188,7 @@ function iniciarCatalogo() {
   filtrarServicios();
 }
 
-/* 6. contacto.html: validación del formulario --------------- */
+/* 5. contacto.html: validación del formulario --------------- */
 const MENSAJE_OBLIGATORIO = "Este campo es obligatorio.";
 
 function validarNombre(valor) {
@@ -373,9 +336,8 @@ function iniciarFormulario() {
   });
 }
 
-/* 7. Arranque ------------------------------------------------ */
+/* 6. Arranque ------------------------------------------------ */
 function iniciar() {
-  inyectarEstilos();
   marcarPaginaActual();
   crearBotonesCabecera();
   escribirAnio();
