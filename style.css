@@ -1,14 +1,52 @@
 
-/* Colores principales del sitio */
+/* ==========================================================
+   Brisa Limpia · style.css
+   Hoja única para las tres páginas
+
+   Índice:
+   1. Variables
+   2. Base
+   3. Layout
+   4. Componentes
+   5. Tabla
+   6. Formulario
+   7. Elementos de JavaScript
+   8. Responsive
+   9. Tema oscuro
+   ========================================================== */
+
+
+/* ==========================================================
+   1. VARIABLES
+   ========================================================== */
+
 :root {
     --azul: #1f5a85;
     --azul-osc: #16405f;
     --verde: #3c8a68;
     --verde-cl: #e6f1ec;
+
     --blanco: #fff;
     --texto: #1c2b36;
     --borde: #cfe0ea;
+
+    --error: #a8402f;
+    --campo: #fff;
+    --campo-texto: #1c2b36;
+    --resalte: #d8ecdf;
+
+    --fuente: Arial, Helvetica, sans-serif;
+
+    --espacio: 1rem;
+    --radio: 10px;
+    --ancho: 1000px;
+    --rapido: .2s;
 }
+
+
+/* ==========================================================
+   2. BASE
+   ========================================================== */
 
 * {
     box-sizing: border-box;
@@ -16,17 +54,25 @@
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    font-family: var(--fuente);
     color: var(--texto);
     background: var(--blanco);
+
     line-height: 1.6;
+
+    transition: background var(--rapido), color var(--rapido);
 }
 
 a {
     color: var(--azul);
+    transition: color var(--rapido);
 }
 
-/* Imágenes y contenido multimedia */
 img,
 video,
 iframe {
@@ -35,67 +81,6 @@ iframe {
 
 img {
     height: auto;
-}
-
-/* Encabezado y navegación */
-header {
-    background: var(--verde-cl);
-    border-bottom: 1px solid var(--borde);
-}
-
-.barra {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    max-width: 1000px;
-    margin: auto;
-    padding: 1rem 1.25rem;
-}
-
-.marca {
-    display: flex;
-    align-items: center;
-    gap: .6rem;
-    font-weight: 700;
-    color: var(--azul-osc);
-    text-decoration: none;
-    font-size: 1.2rem;
-}
-
-nav ul {
-    display: flex;
-    gap: 1.25rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--azul-osc);
-    font-weight: 700;
-}
-
-nav a:hover {
-    color: var(--verde);
-}
-
-/* Portada y títulos */
-.portada {
-    max-width: 1000px;
-    margin: auto;
-    padding: 2rem 1.25rem 3rem;
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: 1.1fr 1fr;
-    align-items: center;
-}
-
-.portada.simple {
-    grid-template-columns: 1fr;
-    padding-bottom: 2rem;
 }
 
 h1 {
@@ -114,89 +99,265 @@ h3 {
     color: var(--azul-osc);
 }
 
-/* Botones */
-.boton {
-    display: inline-block;
-    background: var(--azul);
-    color: var(--blanco);
-    padding: .7rem 1.3rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 700;
+mark {
+    background: var(--resalte);
+    color: var(--texto);
 }
 
-.boton:hover {
-    background: var(--verde);
+address {
+    font-style: normal;
 }
 
-/* Contenido principal */
-main {
-    max-width: 1000px;
+figure {
+    margin: 0 0 var(--espacio);
+}
+
+figcaption {
+    font-size: .9rem;
+    color: var(--azul-osc);
+}
+
+
+/* ==========================================================
+   3. LAYOUT
+   ========================================================== */
+
+header {
+    background: var(--verde-cl);
+    border-bottom: 1px solid var(--borde);
+}
+
+.barra {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--espacio);
+
+    max-width: var(--ancho);
     margin: auto;
-    padding: 1rem 1.25rem;
+    padding: var(--espacio) 1.25rem;
 }
 
-main > section,
-main > aside {
+.marca {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+
+    font-weight: 700;
+    color: var(--azul-osc);
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+nav ul {
+    display: flex;
+    gap: 1.25rem;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--azul-osc);
+    font-weight: 700;
+
+    padding-bottom: .15rem;
+    border-bottom: 2px solid transparent;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+    color: var(--verde);
+    border-bottom-color: var(--verde);
+}
+
+.portada {
+    max-width: var(--ancho);
+    margin: auto;
+    padding: 2rem 1.25rem 3rem;
+
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+}
+
+.portada.simple {
+    grid-template-columns: 1fr;
+    padding-bottom: 2rem;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: var(--ancho);
+    margin: auto;
+    padding: var(--espacio) 1.25rem;
+}
+
+main > section {
     padding: 2rem 0;
     border-bottom: 1px solid var(--borde);
 }
 
-/* Tarjetas y artículos */
+main:has(> aside) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    column-gap: 2rem;
+    align-items: start;
+}
+
+main:has(> aside) > section {
+    grid-column: 1;
+}
+
+main:has(> aside) > aside {
+    grid-column: 2;
+    grid-row: 1 / span 4;
+
+    position: sticky;
+    top: var(--espacio);
+
+    margin-top: 2rem;
+}
+
+footer {
+    background: var(--azul-osc);
+    color: var(--blanco);
+    text-align: center;
+    padding: 1.25rem;
+}
+
+footer p {
+    margin: .2rem 0;
+}
+
+
+/* ==========================================================
+   4. COMPONENTES
+   ========================================================== */
+
+.boton,
+button {
+    background: var(--azul);
+    color: var(--blanco);
+
+    border: 0;
+    border-radius: 8px;
+
+    padding: .7rem 1.3rem;
+
+    font: inherit;
+    font-weight: 700;
+
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+
+    transition: background var(--rapido), transform var(--rapido);
+}
+
+.boton:hover,
+button:hover {
+    background: var(--verde);
+    transform: translateY(-1px);
+}
+
 .tarjetas {
     list-style: none;
     padding: 0;
+
     display: grid;
-    gap: 1rem;
+    gap: var(--espacio);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.galeria {
+    display: grid;
+    gap: var(--espacio);
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .tarjetas li,
-article,
-aside {
+article {
     border: 1px solid var(--borde);
-    border-radius: 10px;
-    padding: 1rem 1.25rem;
+    border-radius: var(--radio);
+    padding: var(--espacio) 1.25rem;
+}
+
+.tarjetas li {
+    transition: transform var(--rapido), box-shadow var(--rapido);
+}
+
+.tarjetas li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(22, 64, 95, .15);
+}
+
+.tarjetas li img {
+    width: 100%;
+    border-radius: 8px;
 }
 
 aside {
     background: var(--verde-cl);
-    border-color: var(--verde-cl);
+    border: 1px solid var(--verde-cl);
+    border-radius: var(--radio);
+    padding: var(--espacio) 1.25rem;
 }
 
 main > aside {
     margin: 2rem 0;
 }
 
-/* Figuras y citas */
-figure {
-    margin: 0 0 1rem;
-}
-
-figcaption {
-    font-size: .9rem;
-    color: #4b6070;
-}
-
 blockquote {
-    margin: 1rem 0;
+    margin: var(--espacio) 0;
     padding: .5rem 1.25rem;
+
     border-left: 4px solid var(--verde);
     background: var(--verde-cl);
 }
 
-mark {
-    background: #d8ecdf;
+blockquote p::before {
+    content: "\201C";
+    color: var(--verde);
+    font-weight: 700;
 }
 
-/* Galería de imágenes */
-.galeria {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+blockquote p::after {
+    content: "\201D";
+    color: var(--verde);
+    font-weight: 700;
 }
 
-/* Tablas */
+details {
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: .6rem var(--espacio);
+    margin-bottom: .6rem;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--azul-osc);
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 2px;
+}
+
+
+/* ==========================================================
+   5. TABLA
+   ========================================================== */
+
 .tabla-caja {
     overflow-x: auto;
 }
@@ -210,6 +371,7 @@ table {
 caption {
     text-align: left;
     font-weight: 700;
+    font-size: 1.05rem;
     padding-bottom: .5rem;
     color: var(--azul-osc);
 }
@@ -226,6 +388,11 @@ thead th {
     color: var(--blanco);
 }
 
+tbody tr:nth-child(even) td,
+tbody tr:nth-child(even) th[scope="row"] {
+    background: var(--verde-cl);
+}
+
 tbody th[scope="rowgroup"] {
     background: var(--verde-cl);
 }
@@ -235,26 +402,17 @@ tfoot td {
     background: var(--verde-cl);
 }
 
-/* Secciones desplegables */
-details {
-    border: 1px solid var(--borde);
-    border-radius: 8px;
-    padding: .6rem 1rem;
-    margin-bottom: .6rem;
-}
 
-summary {
-    cursor: pointer;
-    font-weight: 700;
-    color: var(--azul-osc);
-}
+/* ==========================================================
+   6. FORMULARIO
+   ========================================================== */
 
-/* Formularios */
 fieldset {
     border: 1px solid var(--borde);
-    border-radius: 10px;
+    border-radius: var(--radio);
+
     margin: 0 0 1.25rem;
-    padding: 1rem 1.25rem;
+    padding: var(--espacio) 1.25rem;
 }
 
 legend {
@@ -272,7 +430,7 @@ form label {
 form label.en-linea {
     display: inline-block;
     font-weight: 400;
-    margin-right: 1rem;
+    margin-right: var(--espacio);
 }
 
 input:not([type="radio"], [type="checkbox"], [type="color"], [type="range"]),
@@ -280,58 +438,241 @@ select,
 textarea {
     width: 100%;
     padding: .55rem;
+
     border: 1px solid #9db6c6;
     border-radius: 6px;
+
     font: inherit;
+    background: var(--campo);
+    color: var(--campo-texto);
+
+    transition: border-color var(--rapido), box-shadow var(--rapido);
 }
 
-/* Botones de formularios */
-button {
+input[type="email"] {
+    text-transform: lowercase;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: none;
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px var(--resalte);
+}
+
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+    border-color: var(--error);
+}
+
+form input.invalido,
+form select.invalido,
+form textarea.invalido {
+    border-color: var(--error);
+}
+
+.error {
+    display: block;
+    color: var(--error);
+    font-size: .85rem;
+    margin-top: .25rem;
+}
+
+.error::before {
+    content: "\26A0\00a0";
+}
+
+.error:empty::before {
+    content: none;
+}
+
+
+/* ==========================================================
+   7. ELEMENTOS CREADOS CON JAVASCRIPT
+   ========================================================== */
+
+.acciones {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.menu-boton,
+.tema-boton,
+.filtro-boton {
+    padding: .45rem .9rem;
+}
+
+.menu-boton {
+    display: none;
+}
+
+.volver-arriba {
+    position: fixed;
+    right: var(--espacio);
+    bottom: var(--espacio);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity .25s, background var(--rapido);
+}
+
+.volver-arriba.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    align-items: center;
+    margin-bottom: var(--espacio);
+}
+
+.filtros input {
+    max-width: 280px;
+}
+
+.filtro-boton[aria-pressed="true"] {
     background: var(--verde);
-    color: var(--blanco);
-    border: 0;
-    border-radius: 8px;
-    padding: .8rem 1.6rem;
-    font: inherit;
+}
+
+.contador {
+    color: var(--azul-osc);
     font-weight: 700;
-    cursor: pointer;
 }
 
-button:hover {
-    background: var(--azul);
+.categoria {
+    color: var(--verde);
+    font-size: .85rem;
+    font-weight: 700;
+    margin: .4rem 0 0;
 }
 
-address {
-    font-style: normal;
+.precio {
+    font-weight: 700;
+    color: var(--azul-osc);
 }
 
-/* Videos y contenido incrustado */
+.sin-resultados {
+    padding: var(--espacio);
+    border: 1px dashed var(--borde);
+    border-radius: 8px;
+}
+
+.exito {
+    border: 1px solid var(--verde);
+    background: var(--verde-cl);
+    border-radius: var(--radio);
+
+    padding: var(--espacio) 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
 iframe {
     width: 100%;
     height: 320px;
+
     border: 1px solid var(--borde);
-    border-radius: 10px;
+    border-radius: var(--radio);
 }
 
-/* Pie de página */
-footer {
-    background: var(--azul-osc);
-    color: var(--blanco);
-    text-align: center;
-    padding: 1.25rem;
-}
 
-footer p {
-    margin: .2rem 0;
-}
+/* ==========================================================
+   8. RESPONSIVE
+   ========================================================== */
 
-/* Adaptación a pantallas pequeñas */
-@media (max-width: 700px) {
-    .portada {
+@media (max-width: 768px) {
+
+    .portada,
+    main:has(> aside) {
         grid-template-columns: 1fr;
+    }
+
+    main:has(> aside) > aside {
+        grid-column: 1;
+        grid-row: auto;
+        position: static;
     }
 
     h1 {
         font-size: 1.8rem;
     }
+
+    .menu-boton {
+        display: inline-block;
+    }
+
+    .barra nav {
+        width: 100%;
+        order: 3;
+    }
+
+    .barra nav ul {
+        display: none;
+        flex-direction: column;
+        gap: .5rem;
+        padding: .5rem 0;
+    }
+
+    .barra nav ul.abierto {
+        display: flex;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .tarjetas,
+    .galeria {
+        grid-template-columns: 1fr;
+    }
+
+    .barra {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filtros {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filtros input {
+        max-width: none;
+    }
+
+    form button[type="submit"] {
+        width: 100%;
+    }
+
+    iframe {
+        height: 240px;
+    }
+}
+
+
+/* ==========================================================
+   9. TEMA OSCURO
+   Solo cambia los valores de las variables
+   ========================================================== */
+
+body.oscuro {
+    --azul: #7fb5dc;
+    --azul-osc: #cfe3f1;
+    --verde: #6fc29b;
+    --verde-cl: #1d2f2a;
+
+    --blanco: #10181e;
+    --texto: #e4edf2;
+    --borde: #2d4350;
+
+    --error: #e58b7b;
+    --campo: #10181e;
+    --campo-texto: #e4edf2;
+    --resalte: #2a4a3d;
 }
