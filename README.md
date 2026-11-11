@@ -1,6 +1,16 @@
 # Brisa Limpia · Limpieza profesional a domicilio
 
-Sitio de tres páginas en HTML5: `index.html`, `servicios.html` y `contacto.html`.
+Sitio de tres páginas sobre un servicio de limpieza a domicilio: HTML5 semántico, CSS propio y JavaScript puro (sin frameworks ni librerías).
+
+**Sitio publicado:** https://USUARIO.github.io/NOMBRE-DEL-REPOSITORIO/
+**Autor:** [Nombre completo del estudiante] · Matrícula [000000]
+
+## Capturas
+![Portada en escritorio](docs/capturas/index-escritorio.png)
+![Servicios en modo oscuro](docs/capturas/servicios-oscuro.png)
+![Formulario con errores](docs/capturas/contacto-errores.png)
+![Formulario enviado](docs/capturas/contacto-exito.png)
+![Portada en móvil con menú abierto](docs/capturas/index-movil.png)
 
 ## Mapa de etiquetas
 
@@ -15,5 +25,21 @@ Sitio de tres páginas en HTML5: `index.html`, `servicios.html` y `contacto.html
 | Multimedia | `servicios.html`, “Catálogo”, “Así trabajamos” y “Zona de cobertura”; `index.html`, “Quiénes somos” | img con alt, figure, figcaption, video, source, iframe con title | `figure` agrupa cada imagen con su pie; `video` con `controls` deja al usuario decidir si lo reproduce; el `iframe` muestra el mapa sin construirlo yo. |
 | Tablas | `servicios.html`, “Precios” | table, caption, thead, tbody, tfoot, th scope, colspan, rowspan | Los precios son datos con filas y columnas. `rowspan` agrupa por categoría y `colspan` deja una sola celda de texto en el recargo. |
 | Formularios | `contacto.html`, “Solicita tu cotización” | form, fieldset, legend, label, input (text, email, tel, password, date, time, number, range, color, file, radio, checkbox), select, optgroup, textarea, button | Dos `fieldset` separan mis datos del servicio. Cada `label` va unido a su campo con `for`/`id`. Los atributos `required`, `minlength`, `pattern`, `min` y `max` validan sin JavaScript. |
+
+## Funcionalidades de JavaScript
+| Funcionalidad | Página | Evento | Función principal |
+|---|---|---|---|
+| Menú hamburguesa con `aria-expanded` | Las tres | click, keydown (Esc) | `alternarMenu()` |
+| Modo oscuro recordado con `localStorage` | Las tres | click | `alternarTema()` |
+| Página actual con `aria-current="page"` | Las tres | carga | `marcarPaginaActual()` |
+| Año automático en el footer | Las tres | carga | `escribirAnio()` |
+| Botón “volver arriba” | Las tres | scroll, click | `crearVolverArriba()` |
+| Tarjetas generadas desde un arreglo de 6 objetos | servicios.html | carga | `pintarTarjetas()` |
+| Buscador de texto y filtro por categoría | servicios.html | input, click | `filtrarServicios()` |
+| Precios en pesos dominicanos | servicios.html | carga | `formatearMoneda()` |
+| Validación del formulario (teléfono 809/829/849, fecha no pasada y sin domingos, metros mínimos según servicio, contraseña con letras y números) | contacto.html | submit, input, change, blur | `iniciarFormulario()` |
+
+## Cómo ejecutarlo
+Abrir `index.html` con Live Server o visitar el enlace publicado.
 
 > Nota: reescribe la columna “¿Por qué esa etiqueta?” con tus palabras; es lo que defenderás en clase.
